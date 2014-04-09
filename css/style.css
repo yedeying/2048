@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.abs-center {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.outer {
+    width: 600px;
+    height: 600px;
+    background: #ddd;
+    border-radius: 20px;
+}
+.bg {
+    position: absolute;
+    width: 561px;
+    height: 561px;
+}
+.inner {
+    position: absolute;
+    width: 561px;
+    height: 561px;
+}
+.col, .grid {
+    width: 130px;
+    height: 130px;
+    margin: 5px;
+    display: inline-block;
+}
+.grid {
+    background: #CAD6E3;
+    float: left;
+}
+.col {
+    position: absolute;
+    background: #588ED9 !important;
+    font-size: 56px;
+    line-height: 130px;
+    text-align: center;
+    color: white;
+    z-index: 100;
+}
+.text {
+    font-family: "Ubuntu";
+    line-height: 130px;
+    height: 130px;
+}
