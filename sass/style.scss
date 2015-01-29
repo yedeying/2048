@@ -1,0 +1,61 @@
+@import "compass/css3";
+$row-cnt: 4;
+$col-cnt: 4;
+$width: 100px;
+$space-width: 10px;
+$wrap-width: 20px;
+$inner-width: $width * $row-cnt + $space-width * ($row-cnt - 1);
+$outer-width: $inner-width + $wrap-width * 2;
+body {
+  margin: 0;
+  padding: 0;
+}
+.abs-center {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.outer {
+  width: $outer-width;
+  height: $outer-width;
+  background: #ddd;
+  border-radius: $wrap-width;
+}
+.inner {
+  position: absolute;
+  width: $inner-width;
+  height: $inner-width;
+}
+.col, .grid {
+  position: absolute;
+  width: $width;
+  height: $width;
+}
+.grid {
+  background: #cad6e3;
+  @for $i from 0 to $row-cnt {
+    @for $j from 0 to $col-cnt {
+      &:nth-child(#{$i * $row-cnt + $j + 1}) {
+        left: $j * ($width + $space-width);
+        top: $i * ($width + $space-width);
+      }
+    }
+  }
+}
+.col {
+  position: absolute;
+  background: #588ed9 !important;
+  font-size: 56px;
+  line-height: $width;
+  text-align: center;
+  color: white;
+  z-index: 100;
+  @include transition(top .15s linear, left .15s linear);
+}
+.text {
+  line-height: $width;
+  height: $width;
+}
