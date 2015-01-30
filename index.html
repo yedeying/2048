@@ -2,32 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="css/style.css" media="all">
+  <link rel="stylesheet" href="./css/style.css" media="all">
   <title>
     Ye's 2048
   </title>
 </head>
 <body>
+  <aside class="sidebar">
+    <h1 class="score"></h1>
+    <input placeholder="the size of game, now it's 4" type="text" class="num">
+    <button class="replay">replay</button>
+  </aside>
+  <aside class="info">
+    <h3>Press your keyboard and enjoy the game</h3>
+  </aside>
   <div class="outer abs-center">
-    <div class="inner abs-center">
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-      <div class="grid"></div>
-    </div>
+    <div class="inner abs-center"></div>
   </div>
 </body>
-<script src="js/script.js"></script>
+<script src="./js/reportDialog.js"></script>
+<script src="./js/script.js"></script>
 </html>

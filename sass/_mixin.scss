@@ -1,0 +1,86 @@
+$prefix-for-webkit: true !default;
+$prefix-for-mozilla: true !default;
+$prefix-for-microsoft: true !default;
+$prefix-for-opera: true !default;
+$prefix-for-spec: true !default;
+@mixin prefixer ($property, $value, $prefixes) {
+    @each $prefix in $prefixes {
+        @if $prefix == webkit and $prefix-for-webkit == true {
+            -webkit-#{$property}: $value;
+        }
+        @else if $prefix == moz and $prefix-for-mozilla == true {
+            -moz-#{$property}: $value;
+        }
+        @else if $prefix == ms and $prefix-for-microsoft == true {
+            -ms-#{$property}: $value;
+        }
+        @else if $prefix == o and $prefix-for-opera == true {
+            -o-#{$property}: $value;
+        }
+        @else if $prefix == spec and $prefix-for-spec == true {
+            #{$property}: $value;
+        }
+        @else {
+            @warn "Unrecognized prefix: #{$prefix}";
+        }
+    }
+}
+@mixin box-shadow($shadow...) {
+    @include prefixer(box-shadow, $shadow, webkit spec);
+}
+@mixin box-sizing($type:border-box) {
+    @include prefixer(box-sizing, $type, webkit moz spec);
+}
+%box-sizing {
+    @include box-sizing;
+}
+@mixin transform($property...) {
+    @include prefixer(transform, $property, webkit moz o spec);
+}
+@mixin border-radius($property...) {
+    @include prefixer(border-radius, $property, webkit moz spec);
+}
+@mixin transition($property...) {
+    @include prefixer(transition, $property, webkit moz o spec);
+}
+@mixin triangle($width, $height, $direction, $color) {
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    position: absolute;
+    border-top: $height solid rgba(0,0,0,0);
+    border-right: $width solid rgba(0,0,0,0);
+    border-bottom: $height solid rgba(0,0,0,0);
+    border-left: $width solid rgba(0,0,0,0);
+    @if $direction == "up" {
+        border-bottom: $height solid $color;
+    } @else if $direction == "down" {
+        border-top: $height solid $color;
+    } @else if $direction == "left" {
+        border-right: $width solid $color;
+    } @else if $direction == "right" {
+        border-left: $width solid $color;
+    }
+}
+@mixin clearfix {
+    &:before, &:after {
+        display: table;
+        content: " ";
+    }
+    &:after {
+        clear: both;
+    }
+    *zoom: 1;
+}
+%clearfix {
+    &:before, &:after {
+        display: table;
+        content: " ";
+    }
+    &:after {
+        clear: both;
+    }
+    *zoom: 1;
+}

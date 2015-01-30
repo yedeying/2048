@@ -1,6 +1,13 @@
+.num {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
+  font-family: cursive;
 }
 
 .abs-center {
@@ -13,107 +20,70 @@ body {
 }
 
 .outer {
-  width: 470px;
-  height: 470px;
   background: #ddd;
-  border-radius: 20px;
+  z-index: 1;
 }
 
 .inner {
   position: absolute;
-  width: 430px;
-  height: 430px;
 }
 
 .col, .grid {
   position: absolute;
-  width: 100px;
-  height: 100px;
 }
 
 .grid {
   background: #cad6e3;
 }
-.grid:nth-child(1) {
-  left: 0px;
-  top: 0px;
-}
-.grid:nth-child(2) {
-  left: 110px;
-  top: 0px;
-}
-.grid:nth-child(3) {
-  left: 220px;
-  top: 0px;
-}
-.grid:nth-child(4) {
-  left: 330px;
-  top: 0px;
-}
-.grid:nth-child(5) {
-  left: 0px;
-  top: 110px;
-}
-.grid:nth-child(6) {
-  left: 110px;
-  top: 110px;
-}
-.grid:nth-child(7) {
-  left: 220px;
-  top: 110px;
-}
-.grid:nth-child(8) {
-  left: 330px;
-  top: 110px;
-}
-.grid:nth-child(9) {
-  left: 0px;
-  top: 220px;
-}
-.grid:nth-child(10) {
-  left: 110px;
-  top: 220px;
-}
-.grid:nth-child(11) {
-  left: 220px;
-  top: 220px;
-}
-.grid:nth-child(12) {
-  left: 330px;
-  top: 220px;
-}
-.grid:nth-child(13) {
-  left: 0px;
-  top: 330px;
-}
-.grid:nth-child(14) {
-  left: 110px;
-  top: 330px;
-}
-.grid:nth-child(15) {
-  left: 220px;
-  top: 330px;
-}
-.grid:nth-child(16) {
-  left: 330px;
-  top: 330px;
-}
 
 .col {
-  position: absolute;
-  background: #588ed9 !important;
-  font-size: 56px;
-  line-height: 100px;
-  text-align: center;
-  color: white;
-  z-index: 100;
+  -webkit-transition: top 0.15s linear, left 0.15s linear;
   -moz-transition: top 0.15s linear, left 0.15s linear;
   -o-transition: top 0.15s linear, left 0.15s linear;
-  -webkit-transition: top 0.15s linear, left 0.15s linear;
   transition: top 0.15s linear, left 0.15s linear;
+  position: absolute;
+  background: #588ed9 !important;
+  text-align: center;
+  color: white;
+  z-index: 10;
 }
 
-.text {
-  line-height: 100px;
-  height: 100px;
+.sidebar {
+  position: fixed;
+  right: 110px;
+  top: 150px;
+}
+
+.info {
+  text-align: center;
+}
+
+.num {
+  padding: 7px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  width: 100%;
+}
+.num:focus {
+  border-color: #82aae2;
+  box-shadow: 0 0 10px rgba(88, 142, 217, 0.6);
+}
+
+.replay {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  outline: none;
+  background-color: #588ed9;
+  color: #fff;
+  border: none;
+  margin-top: 10px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: cursive;
+  cursor: pointer;
+}
+.replay:hover {
+  background-color: #82aae2;
 }

@@ -1,0 +1,132 @@
+.dialog-cover .dialog_type_prompt .dialog_text {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.dialog-cover .dialog_header, .dialog-cover .dialog_type_prompt .dialog_cnt {
+  *zoom: 1;
+}
+.dialog-cover .dialog_header:before, .dialog-cover .dialog_type_prompt .dialog_cnt:before, .dialog-cover .dialog_header:after, .dialog-cover .dialog_type_prompt .dialog_cnt:after {
+  display: table;
+  content: " ";
+}
+.dialog-cover .dialog_header:after, .dialog-cover .dialog_type_prompt .dialog_cnt:after {
+  clear: both;
+}
+
+.dialog-cover {
+  z-index: 99;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.dialog-cover .dialog {
+  position: absolute;
+  background-color: white;
+  top: 200px;
+  width: 400px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+.dialog-cover .dialog_header {
+  padding: 6px 16px;
+  background-color: #e8e8e8;
+}
+.dialog-cover .dialog_title {
+  float: left;
+  font-size: 14px;
+  color: #333333;
+}
+.dialog-cover .dialog_footer {
+  padding: 6px 16px;
+  text-align: right;
+}
+.dialog-cover .dialog_footer button {
+  outline: none;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+.dialog-cover .dialog_footer .dialog_confirm {
+  color: white;
+  background-color: #33a1ee;
+  border: 1px solid #33a1ee;
+  margin-left: 5px;
+}
+.dialog-cover .dialog_footer .dialog_confirm:hover {
+  background-color: #1694ec;
+  border: 1px solid #1694ec;
+}
+.dialog-cover .dialog_footer .dialog_cancel {
+  color: #5e545e;
+  background-color: whitesmoke;
+  border: 1px solid #dcdde1;
+  margin-left: 5px;
+}
+.dialog-cover .dialog_footer .dialog_cancel:hover {
+  background-color: #eaeaea;
+  border: 1px solid #d4d5d7;
+}
+.dialog-cover .dialog_close {
+  cursor: pointer;
+  float: right;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background-image: url(../images/mail_icon_close.png);
+  background-repeat: no-repeat;
+  margin: 6px 0;
+}
+.dialog-cover .dialog_type_prompt .dialog_footer {
+  padding: 2px 16px 10px 0;
+}
+.dialog-cover .dialog_type_prompt .dialog_cnt {
+  padding: 15px 15px 0 15px;
+  border-top: 1px solid #d6d6d6;
+}
+.dialog-cover .dialog_type_prompt .dialog_text {
+  width: 100%;
+  height: 54px;
+  margin-top: 3px;
+  border: 1px solid #ccc;
+  outline: none;
+  resize: none;
+  padding: 5px;
+}
+.dialog-cover .dialog_type_alert .dialog_cnt, .dialog-cover .dialog_type_confirm .dialog_cnt {
+  position: relative;
+  border-top: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
+  text-align: center;
+}
+.dialog-cover .dialog_type_alert .dialog_info, .dialog-cover .dialog_type_confirm .dialog_info {
+  position: relative;
+  display: inline-block;
+  word-wrap: break-word;
+  max-width: 234px;
+  font-size: 18px;
+  text-align: left;
+  color: #333333;
+  padding: 31px 0;
+}
+.dialog-cover .dialog_type_alert .dialog_info:before, .dialog-cover .dialog_type_confirm .dialog_info:before {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 31px;
+  height: 31px;
+  left: -40px;
+}
+.dialog-cover .dialog_type_alert .dialog_info.success:before, .dialog-cover .dialog_type_confirm .dialog_info.success:before {
+  background-image: url(../images/icon-check.png);
+}
+.dialog-cover .dialog_type_alert .dialog_info.info:before, .dialog-cover .dialog_type_confirm .dialog_info.info:before {
+  background-image: url(../images/icon-close.png);
+  background-repeat: no-repeat;
+}

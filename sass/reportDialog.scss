@@ -1,0 +1,123 @@
+@import "mixin";
+.dialog-cover {
+    z-index: 99;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, .5);
+    .dialog {
+        position: absolute;
+        background-color: white;
+        top: 200px;
+        width: 400px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+    }
+    .dialog_header {
+        @extend %clearfix;
+        padding: 6px 16px;
+        background-color: rgb(232, 232, 232);
+    }
+    .dialog_title {
+        float: left;
+        font-size: 14px;
+        color: rgb(51, 51, 51);
+    }
+    .dialog_footer {
+        padding: 6px 16px;
+        text-align: right;
+        button {
+            outline: none;
+            padding: 4px 12px;
+            cursor: pointer;
+        }
+        .dialog_confirm {
+            color: white;
+            background-color: rgb(51, 161, 238);
+            border: 1px solid rgb(51, 161, 238);
+            margin-left: 5px;
+            &:hover {
+                background-color: #1694ec;
+                border: 1px solid #1694ec;
+            }
+        }
+        .dialog_cancel {
+            color: rgb(94, 84, 94);
+            background-color: rgb(245, 245, 245);
+            border: 1px solid rgb(220, 221, 225);
+            margin-left: 5px;
+            &:hover {
+                background-color: #eaeaea;
+                border: 1px solid #d4d5d7;
+            }
+        }
+    }
+    .dialog_close {
+        cursor: pointer;
+        float: right;
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+        background-image: url(../images/mail_icon_close.png);
+        background-repeat: no-repeat;
+        margin: 6px 0;
+    }
+    .dialog_type_prompt {
+        .dialog_footer {
+            padding: 2px 16px 10px 0;
+        }
+        .dialog_cnt {
+            @extend %clearfix;
+            padding: 15px 15px 0 15px;
+            border-top: 1px solid rgb(214, 214, 214);
+        }
+        .dialog_text {
+            @extend %box-sizing;
+            width: 100%;
+            height: 54px;
+            margin-top: 3px;
+            border: 1px solid #ccc;
+            outline: none;
+            resize: none;
+            padding: 5px;
+        }
+    }
+    .dialog_type_alert, .dialog_type_confirm {
+        .dialog_cnt {
+            position: relative;
+            border-top: 1px solid rgb(214, 214, 214);
+            border-bottom: 1px solid rgb(214, 214, 214);
+            text-align: center;
+        }
+        .dialog_info {
+            position: relative;
+            display: inline-block;
+            word-wrap: break-word;
+            max-width: 234px;
+            font-size: 18px;
+            text-align: left;
+            color: rgb(51, 51, 51);
+            padding: 31px 0;
+            &:before {
+                content: " ";
+                display: block;
+                position: absolute;
+                width: 31px;
+                height: 31px;
+                left: -40px;
+            }
+            &.success:before {
+                background-image: url(../images/icon-check.png);
+            }
+            &.info:before {
+                background-image: url(../images/icon-close.png);
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}
