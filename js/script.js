@@ -556,7 +556,7 @@
         38: 'top',    // ↑
         40: 'bottom', // ↓
         37: 'left',   // ←
-        39: 'right'   // →
+        39: 'right',   // →
         // for game player
         87: 'top',    // W
         83: 'bottom', // S
@@ -566,7 +566,7 @@
         75: 'top',    // K
         74: 'bottom', // J
         72: 'left',   // H
-        76: 'right',  // L
+        76: 'right'  // L
       };
       var dire = direMap[e.which];
       dire && $this.model.move(dire);
