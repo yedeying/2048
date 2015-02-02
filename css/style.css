@@ -7,7 +7,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: cursive;
+  font-family: "Microsoft Yahei";
 }
 
 .abs-center {
@@ -42,10 +42,31 @@ body {
   -o-transition: top 0.15s linear, left 0.15s linear;
   transition: top 0.15s linear, left 0.15s linear;
   position: absolute;
-  background: #588ed9 !important;
+  background: #588ed9;
   text-align: center;
   color: white;
   z-index: 10;
+}
+.col[data-num="1"], .col[data-num="2"] {
+  background-color: #598ed9;
+}
+.col[data-num="3"], .col[data-num="4"] {
+  background-color: #8e59d9;
+}
+.col[data-num="5"], .col[data-num="6"] {
+  background-color: #d959b9;
+}
+.col[data-num="7"], .col[data-num="8"] {
+  background-color: #d96359;
+}
+.col[data-num="9"], .col[data-num="10"] {
+  background-color: #d9cf59;
+}
+.col[data-num="11"], .col[data-num="12"] {
+  background-color: #79d959;
+}
+.col[data-num="13"], .col[data-num="14"] {
+  background-color: #59d9a4;
 }
 
 .sidebar {
@@ -86,4 +107,8 @@ body {
 }
 .replay:hover {
   background-color: #82aae2;
+}
+
+.text {
+  display: block;
 }

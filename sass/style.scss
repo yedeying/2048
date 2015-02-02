@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: cursive;
+  font-family: "Microsoft Yahei";
 }
 .abs-center {
   position: absolute;
@@ -28,10 +28,18 @@ body {
 .col {
   @include transition(top .15s linear, left .15s linear);
   position: absolute;
-  background: #588ed9 !important;
+  background: #588ed9;
   text-align: center;
   color: white;
   z-index: 10;
+  @for $i from 1 through 13 {
+    @if $i % 2 == 1 {
+      $tmp: floor($i / 2) * 50 + 215;
+      &[data-num="#{$i}"], &[data-num="#{$i + 1}"] {
+        background-color: hsl($tmp % 360, 63%, 60%);
+      }
+    }
+  }
 }
 .sidebar {
   position: fixed;
@@ -69,4 +77,7 @@ body {
   &:hover {
     background-color: lighten(#588ed9, 10%);
   }
+}
+.text {
+  display: block;
 }

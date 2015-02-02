@@ -462,14 +462,41 @@
      * fixed the font size for new grid, prevent from overlap
      */
     function _fixFontSize(col) {
+      if(!$this.fontSpan) {
+        var fontSpan = $('.font-span');
+        if(fontSpan) {
+          $this.fontSpan = fontSpan;
+        } else {
+          $this.fontSpan = document.createElement('span');
+          $this.fontSpan.style.visibility = 'hidden';
+          $this.fontSpan.classList.add('font-span');
+          document.body.appendChild($this.fontSpan);
+        }
+      }
+      var span = $this.fontSpan;
       var txt = col && col.querySelector('.text');
       var fontSize = parseInt(window.getComputedStyle(txt).fontSize, 10);
       if(txt) {
-        while(txt.offsetWidth >= config.width - 10 && fontSize >= 12) {
+        span.style.fontSize = fontSize + 'px';
+        span.innerText = txt.innerText;
+        while(span.offsetWidth >= config.width - 20 && fontSize >= 12) {
           fontSize -= 2;
-          txt.style.fontSize = fontSize + 'px';
+          span.style.fontSize = fontSize + 'px';
         }
+        txt.style.fontSize = fontSize + 'px';
       }
+      _fixColor(col);
+    }
+    /**
+     * fixed the color of every grid, by providing an data-num for style sheet
+     */
+    function _fixColor(col) {
+      if(!col) return;
+      var txt = col && col.querySelector('.text');
+      var val = parseInt(txt.innerText, 10);
+      var pow = Math.log(val) / Math.log(2);
+      pow = (pow > 14 ? 14 : pow);
+      col.dataset['num'] = pow;
     }
     /**
      * moveHandle for the model, called when the grids moved
@@ -505,16 +532,23 @@
      */
     function _finish() {
       var cols = $('.inner .col', true);
-      window.showDialog('confirm', 'Game Over', 'Game Over!!! Your score is ' + $this.model.score + '<br>Want continue?', function(cont) {
-        if(cont) {
-          cols.forEach(function(gri) {
-            gri.parentNode && gri.parentNode.removeChild(gri);
-          });
-          $this.model.restart();
-          $this.model.addGrid();
-          $this.model.addGrid();
-        } else {
-          window.removeEventListener('keydown', _keydownHandle);
+      window.showDialog({
+        type: 'confirm',
+        title: 'Game Over',
+        text: 'Game Over!!! Your score is ' + $this.model.score + '<br>Want continue?',
+        confirmText: 'Yes',
+        cancelText: 'No',
+        confirmHandle: function(cont) {
+          if(cont) {
+            cols.forEach(function(gri) {
+              gri.parentNode && gri.parentNode.removeChild(gri);
+            });
+            $this.model.restart();
+            $this.model.addGrid();
+            $this.model.addGrid();
+          } else {
+            window.removeEventListener('keydown', _keydownHandle);
+          }
         }
       });
     }
@@ -575,7 +609,12 @@
     function start() {
       var size = $('.num').value || 4;
       if(size <= 1 || size > 10) {
-        window.showDialog('alert', 'alert', 'the size must in the range [2, 10]');
+        window.showDialog({
+          type: 'alert',
+          title: 'alert',
+          text: 'the size must in the range [2, 10]',
+          confirmText: 'OK'
+        });
         return;
       }
       var width = getWidth(size);
