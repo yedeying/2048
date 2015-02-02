@@ -8,8 +8,7 @@
   /**
    * Model generate the model of 2048
    * @param {object} config:
-   * rowCnt [the count of rows, defalut to be 4]
-   * colCnt [the count of cols, defalut to be 4]
+   * size [the count of rows, defalut to be 4]
    * numList [a list for generating number per time]
    * createHandle [when creating, callback the function with a grid obj param]
    * moveHandle [when moving, callback the function with a grid obj param]
@@ -23,8 +22,7 @@
     function _init() {
       // merge configs
       var defalutConfig = {
-        rowCnt: 4,
-        colCnt: 4,
+        size: 4,
         numList: [2, 4],
         createHandle: new Function,
         moveHandle: new Function,
@@ -37,9 +35,9 @@
       config = defalutConfig;
       // generate data rect
       $this.dataRect = [];
-      for(var i = 0; i < config.rowCnt; i++) {
+      for(var i = 0; i < config.size; i++) {
         var arr = [];
-        for(var j = 0; j < config.colCnt; j++) {
+        for(var j = 0; j < config.size; j++) {
           arr.push({id: -1, val: -1});
         }
         $this.dataRect.push(arr);
@@ -58,29 +56,28 @@
         callback = dire;
         dire = 'left';
       }
-      var ilen = config.rowCnt;
-      var jlen = config.colCnt;
+      var len = config.size;
       if(dire === 'top') {
-        for(var j = 0; j < jlen; j++) {
-          for(var i = 0; i < ilen; i++) {
+        for(var j = 0; j < len; j++) {
+          for(var i = 0; i < len; i++) {
             callback($this.dataRect[i][j], i, j);
           }
         }
       } else if(dire === 'bottom') {
-        for(var j = 0; j < jlen; j++) {
-          for(var i = ilen - 1; i >= 0; i--) {
+        for(var j = 0; j < len; j++) {
+          for(var i = len - 1; i >= 0; i--) {
             callback($this.dataRect[i][j], i, j);
           }
         }
       } else if(dire === 'left') {
-        for(var i = 0; i < ilen; i++) {
-          for(var j = 0; j < jlen; j++) {
+        for(var i = 0; i < len; i++) {
+          for(var j = 0; j < len; j++) {
             callback($this.dataRect[i][j], i, j);
           }
         }
       } else if(dire === 'right') {
-        for(var i = 0; i < ilen; i++) {
-          for(var j = jlen - 1; j >= 0; j--) {
+        for(var i = 0; i < len; i++) {
+          for(var j = len - 1; j >= 0; j--) {
             callback($this.dataRect[i][j], i, j);
           }
         }
@@ -121,17 +118,17 @@
       $this.dataRect[x][y] = obj;
     }
     function _checkFail() {
-      if($this.dataTable.cnt !== config.rowCnt * config.colCnt) return;
+      if($this.dataTable.cnt !== config.size * config.size) return;
       var fail = true;
-      for(var i = 0; fail && i < config.rowCnt; i++) {
-        for(var j = 0; fail && j < config.colCnt - 1; j++) {
+      for(var i = 0; fail && i < config.size; i++) {
+        for(var j = 0; fail && j < config.size - 1; j++) {
           if($this.dataRect[i][j].val === $this.dataRect[i][j + 1].val) {
             fail = false;
           }
         }
       }
-      for(var j = 0; fail && j < config.colCnt; j++) {
-        for(var i = 0; fail && i < config.rowCnt - 1; i++) {
+      for(var j = 0; fail && j < config.size; j++) {
+        for(var i = 0; fail && i < config.size - 1; i++) {
           if($this.dataRect[i][j].val === $this.dataRect[i + 1][j].val) {
             fail = false;
           }
@@ -152,9 +149,9 @@
       // select an empty grid to fill in
       _eachTable(function(grid, i, j) {
         if(dire === 'top' && i !== 0) return;
-        if(dire === 'bottom' && i !== config.rowCnt - 1) return;
+        if(dire === 'bottom' && i !== config.size - 1) return;
         if(dire === 'left' && j !== 0) return;
-        if(dire === 'right' && j !== config.colCnt - 1) return;
+        if(dire === 'right' && j !== config.size - 1) return;
         if(grid.id === -1) {
           queue.push({
             x: i,
@@ -205,7 +202,7 @@
       var move = false;
       // top or bottom is true, left or right is false
       var type = (dire === 'top' || dire === 'bottom') || false;
-      var len = type && config.rowCnt || config.colCnt;
+      var len = config.size;
       for(var i = 0; i < len; i++) {
         vis.push({combine: true});
       }
@@ -233,7 +230,7 @@
      */
     function _moveGrid(x, y, dire, vis) {
       function _out(x, y) {
-        return x < 0 || x >= config.rowCnt || y < 0 || y >= config.colCnt;
+        return x < 0 || x >= config.size || y < 0 || y >= config.size;
       }
       var move = false;
       var dx = dire.x;
@@ -293,7 +290,7 @@
           out += ' ';
         }
         out += gri.val + ' ';
-        if(j === config.colCnt - 1) {
+        if(j === config.size - 1) {
           out += '\n';
         }
       });
@@ -304,8 +301,7 @@
   // the second part //
   /////////////////////
   var CONFIG = {
-    rowCnt: 4,
-    colCnt: 4,
+    size: 4,
     width: 80,
     spaceWidth: 10,
     fontSize: 50,
@@ -319,8 +315,8 @@
     var config = (function() {
       var res = CONFIG;
       res.width = params.width || res.width;
-      res.rowCnt = params.rowCnt || res.rowCnt;
-      res.innerWidth = res.width * res.rowCnt + res.spaceWidth * (res.rowCnt - 1);
+      res.size = params.size || res.size;
+      res.innerWidth = res.width * res.size + res.spaceWidth * (res.size - 1);
       res.outerWidth = res.innerWidth + res.wrapWidth * 2;
       return res;
     })();
@@ -345,15 +341,14 @@
       $('.score').innerText = 'your score: 0';
       // add background for every grids
       var html = '';
-      for(var i = 0; i < config.rowCnt * config.colCnt; i++) {
+      for(var i = 0; i < config.size * config.size; i++) {
         html += '<div class="grid"></div>';
       }
       $('.inner').innerHTML = html;
       _initStyles();
       // create the model
       $this.model = new Model({
-        rowCnt: config.rowCnt,
-        colCnt: config.colCnt,
+        size: config.size,
         numList: [2, 2, 2, 4],
         createHandle: _createGrid,
         moveHandle: _moveGrid,
@@ -426,10 +421,10 @@
       _css('.text', 'height', _val('width'));
       // for every grids, generate its position
       var grids = $('.grid', true);
-      for(var i = 0; i < config.rowCnt; i++) {
-        for(var j = 0; j < config.colCnt; j++) {
-          grids[i * config.rowCnt + j].style.top = _getLen(i);
-          grids[i * config.rowCnt + j].style.left = _getLen(j);
+      for(var i = 0; i < config.size; i++) {
+        for(var j = 0; j < config.size; j++) {
+          grids[i * config.size + j].style.top = _getLen(i);
+          grids[i * config.size + j].style.left = _getLen(j);
         }
       }
     }
@@ -557,10 +552,21 @@
      */
     function _keydownHandle(e) {
       var direMap = {
-        37: 'left',
-        38: 'top',
-        39: 'right',
-        40: 'bottom'
+        // normal
+        38: 'top',    // ↑
+        40: 'bottom', // ↓
+        37: 'left',   // ←
+        39: 'right'   // →
+        // for game player
+        87: 'top',    // W
+        83: 'bottom', // S
+        65: 'left',   // A
+        68: 'right',  // D
+        // for vim user
+        75: 'top',    // K
+        74: 'bottom', // J
+        72: 'left',   // H
+        76: 'right',  // L
       };
       var dire = direMap[e.which];
       dire && $this.model.move(dire);
@@ -621,8 +627,7 @@
       currentGame && currentGame.destroy();
       currentGame = new Game({
         width: width,
-        rowCnt: size,
-        colCnt: size
+        size: size
       });
       currentGame.start();
     }
