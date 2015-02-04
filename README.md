@@ -2,7 +2,7 @@
 > yedeying's 2048 game
 
 [Github repo](https://github.com/yedeying999/2048)
-[Play Online](/sites/2048)
+[Play Online](http://yedeying2048.coding.io)
 ## 前言
 2048是什么游戏就不说了, 这个项目是挺久前已经创建了。而创建它的动力, 就是想自己来实现一遍这个经典的游戏。
 
